@@ -12,8 +12,8 @@ This is just experiments with:
     - Helm init doesn't work, see [helm-init.sh](bin/helm-init.sh) for fix.
     - Helm delete, even with `--purge` leaves running pod. Need t use `kubectl` to kill.
  - I'm not using a two stage build with a `Golang` docker image.
-   - Building an `Linux amd64` binary and copying that into an `Alpine` image in anticipation 
-   of having to build from a very large source base in the future.
+   - Building a `Linux amd64` binary and copying that into an `Alpine` image in anticipation 
+   of having to build from a very large source base in the future and wanting to avoid multi-stage build pattern.
  - Helm chart stripped back to a no ingress program.
     - no services
     - no ingress
