@@ -5,10 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: nwillc/webgo
+  repository: nwillcpaxos/webgo
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.1"
+
 
 imagePullSecrets: []
 nameOverride: ""
