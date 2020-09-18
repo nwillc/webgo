@@ -14,3 +14,7 @@ This is just experiments with:
  - I'm not using a two stage build with a `Golang` docker image.
    - Building an `Linux amd64` binary and copying that into an `Alpine` image in anticipation 
    of having to build from a very large source base in the future.
+ - Helm chart stripped back to a no ingress program.
+    - no services
+    - no ingress
+    - no autoscaling
