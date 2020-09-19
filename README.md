@@ -4,16 +4,16 @@ This is just experiments with:
 
  - Go (v1.15.1)
  - Kubernetes (OSX Docker Desktop)
- - Helm (v2.9.0+)
+ - Helm (v2.9.0+, v3.+)
+    - env yaml files to configmaps
  
 ## Basic Steps
  
 ```bash
 # Build the docker image
 ./bin/docker-build-push.sh -n NAME -v VERSION
-# Check chart has repository equal to NAME
-# Check chart has appVersion equal to VERSION
-helm install webgo ./charts/webgo
+# helm deploy 
+./bin/deploy.sh
 ```
 
 ## Helm 2.9.0 vs Helm 3.+
