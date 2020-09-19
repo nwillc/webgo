@@ -5,7 +5,7 @@ This is just experiments with:
  - Go (v1.15.1)
  - Kubernetes (OSX Docker Desktop)
  - Helm (v2.9.0+, v3.+)
-    - env yaml files to configmaps
+    - env yaml files to env variables 
  
 ## Basic Steps
  
