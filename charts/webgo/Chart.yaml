@@ -2,6 +2,7 @@ apiVersion: v2
 name: webgo
 description: A Helm chart for Kubernetes
 type: application
+icon: https://raw.githubusercontent.com/nwillc/ksvg/master/docs/images/codeMonkey.svg
 
 # This is the chart version.
 version: 1.0.5

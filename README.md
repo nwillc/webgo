@@ -6,7 +6,7 @@ This is just experiments with:
  - Kubernetes (OSX Docker Desktop)
  - Helm (v2.9.0+)
  
- ## Basic Steps
+## Basic Steps
  
 ```bash
 # Build the docker image
@@ -16,9 +16,9 @@ This is just experiments with:
 helm install webgo ./charts/webgo
 ```
 
- ## Helm 2.9.0 vs Helm 3.+
+## Helm 2.9.0 vs Helm 3.+
  
- ```bash
+```bash
 # Remove 2.9.0
 helm delete NAME --purge
 
@@ -32,7 +32,7 @@ helm install CHART_PATH -name NAME
 helm install NAME CHART_PATH
 ```
 
- ## Notes:
+## Notes:
  
   - Helm 2.9.0 issues:
     - Helm init doesn't work, see [helm-init.sh](bin/helm-init.sh) for fix.
