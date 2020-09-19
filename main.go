@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	log.Printf("foo set to: %s\n", os.Getenv("foo"))
-	log.Printf("RANDOM set to: %s\n", os.Getenv("RANDOM"))
+	log.Printf("CONFIG_FOO set to: %s\n", os.Getenv("CONFIG_FOO"))
+	log.Printf("CONFIG_DATABASE_NAME set to: %s\n", os.Getenv("CONFIG_DATABASE_NAME"))
 	http.HandleFunc("/", handler)
 	go func() {
 		for {
