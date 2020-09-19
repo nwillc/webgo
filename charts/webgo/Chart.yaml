@@ -5,7 +5,7 @@ type: application
 icon: https://raw.githubusercontent.com/nwillc/ksvg/master/docs/images/codeMonkey.svg
 
 # This is the chart version.
-version: 1.0.7
+version: 1.0.9
 
 # This is the version number of the application being deployed.
-appVersion: 0.1.5
+appVersion: 0.1.6
