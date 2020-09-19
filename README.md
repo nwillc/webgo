@@ -42,7 +42,4 @@ helm install NAME CHART_PATH
  - I'm not using a two stage build with a `Golang` docker image.
    - Building a `Linux amd64` binary and copying that into an `Alpine` image in anticipation 
    of having to build from a very large source base in the future and wanting to avoid multi-stage build pattern.
- - Helm chart stripped back to a no ingress program.
-    - no services
-    - no ingress
-    - no autoscaling
+ - Helm chart stripped back as much as possible.
