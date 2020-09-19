@@ -1,21 +1,25 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"sync"
+	"net/http"
+	"os"
 	"time"
 )
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(1)
+	log.Printf("foo set to: %s\n", os.Getenv("foo"))
+	http.HandleFunc("/", handler)
 	go func() {
 		for {
 				time.Sleep(5 * time.Second)
 				log.Println("TICK")
 			}
-		wg.Done()
 	}()
-	wg.Wait()
+	log.Fatal(http.ListenAndServe(":8888", nil))
 }
 
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "ACK")
+}

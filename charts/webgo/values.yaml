@@ -7,6 +7,7 @@ replicaCount: 1
 image:
   repository: nwillc/webgo
   pullPolicy: IfNotPresent
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -23,9 +24,17 @@ podSecurityContext: {}
 
 securityContext: {}
 
-service: {}
+service:
+  type: ClusterIP
+  port: 8888
 
-ingress: {}
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
 
 resources: {}
 
@@ -40,3 +49,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+config:
+  foo: bar
