@@ -1,25 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
+	"sync"
 	"time"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello World!")
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-	go pinger()
-	log.Fatal(http.ListenAndServe(":8888", nil))
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		for {
+				time.Sleep(5 * time.Second)
+				log.Println("TICK")
+			}
+		wg.Done()
+	}()
+	wg.Wait()
 }
 
-func pinger() {
-	for {
-		time.Sleep(5 * time.Second)
-		log.Println("Ping")
-	}
-}

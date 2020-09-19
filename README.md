@@ -8,9 +8,11 @@ This is just experiments with:
  
  ## Notes:
  
-  - Helm 2.9.0 issues
+  - Helm 2.9.0 issues:
     - Helm init doesn't work, see [helm-init.sh](bin/helm-init.sh) for fix.
     - Helm delete, even with `--purge` leaves running pod. Need t use `kubectl` to kill.
+ - Helm 3+:
+    - `helm uninstall` seems to work properly
  - I'm not using a two stage build with a `Golang` docker image.
    - Building a `Linux amd64` binary and copying that into an `Alpine` image in anticipation 
    of having to build from a very large source base in the future and wanting to avoid multi-stage build pattern.
