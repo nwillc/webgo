@@ -10,12 +10,13 @@ import (
 
 func main() {
 	log.Printf("foo set to: %s\n", os.Getenv("foo"))
+	log.Printf("RANDOM set to: %s\n", os.Getenv("RANDOM"))
 	http.HandleFunc("/", handler)
 	go func() {
 		for {
-				time.Sleep(5 * time.Second)
-				log.Println("TICK")
-			}
+			time.Sleep(5 * time.Second)
+			log.Println("TICK")
+		}
 	}()
 	log.Fatal(http.ListenAndServe(":8888", nil))
 }
