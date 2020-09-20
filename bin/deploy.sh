@@ -18,4 +18,4 @@ while getopts ":d" OPT; do
   esac
 done
 
-helm upgrade --install --values environment/global/env.yaml --values "environment/${ENV}/env.yaml" webgo  ${DEBUG} ./charts/webgo
+helm upgrade --install --values environment/global/config.yaml --values "environment/${ENV}/config.yaml" webgo  ${DEBUG} ./charts/webgo

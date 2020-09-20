@@ -1,4 +1,4 @@
-env:
+config:
   foo: "foo"
   org:
     name: "nwillc"

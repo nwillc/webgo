@@ -17,6 +17,27 @@ This is just experiments with:
 ./bin/deploy.sh
 ```
 
+## Config Notes
+Environment variables are exposed to the service from YAML files in `environment` folder. The YAML, containing a map named
+`config` is mapped to environment variables as follows:
+
+```yaml
+config:
+    max: "42"
+    database:
+      name: "server.name.com"
+      port: 2056
+``` 
+
+The environment variables that result will be:
+
+```bash
+CONFIG_MAX=42
+CONFIG_DATABASE_NAME=server.name.com
+CONFIG_DATABASE_PORT=2056
+```
+
+
 ## Helm 2.9.0 vs Helm 3.+
  
 ```bash

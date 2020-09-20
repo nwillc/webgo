@@ -33,7 +33,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env: {{ list .Values.env "CONFIG" | include "flattenmap" | nindent 12 }}
+          env: {{ list .Values.config "CONFIG" | include "flattenmap" | nindent 12 }}
           ports:
             - name: http
               containerPort: 8888
