@@ -1,5 +1,2 @@
 config:
-  foo: "foo"
-  org:
-    name: "nwillc"
-    dept: "IT"
+  message: "BEEP"

@@ -1,5 +1,2 @@
 config:
-  foo: "bar bar"
-  favorite: "coffee"
-  database:
-    name: "database-server.com"
+  message: "TICK"
