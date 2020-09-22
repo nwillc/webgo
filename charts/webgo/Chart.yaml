@@ -1,6 +1,6 @@
 apiVersion: v2
 name: webgo
-description: A Helm chart for Kubernetes
+description: A Helm chart for an example Go program
 type: application
 icon: https://raw.githubusercontent.com/nwillc/ksvg/master/docs/images/codeMonkey.svg
 
@@ -8,4 +8,4 @@ icon: https://raw.githubusercontent.com/nwillc/ksvg/master/docs/images/codeMonke
 version: 1.0.9
 
 # This is the version number of the application being deployed.
-appVersion: 1.1.9
+appVersion: 1.0.10

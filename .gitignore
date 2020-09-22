@@ -1,3 +1,4 @@
 .idea
-webgo
+/webgo
+/bin/amd64/webgo
 
