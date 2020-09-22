@@ -1,4 +1,4 @@
 .idea
-./webgo
-./bin/amd64
+/webgo
+/bin/amd64/webgo
 

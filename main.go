@@ -8,8 +8,10 @@ import (
 	"time"
 )
 
+var msg string
+
 func main() {
-	msg := os.Getenv("CONFIG_MESSAGE")
+	msg = os.Getenv("CONFIG_MESSAGE")
 	go func() {
 		for {
 			time.Sleep(5 * time.Second)
@@ -21,5 +23,5 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "ACK")
+	fmt.Fprintln(w, msg)
 }
