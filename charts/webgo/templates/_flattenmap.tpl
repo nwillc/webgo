@@ -1,21 +1,20 @@
 {{/*
-Flatten a map to a dictionary, prepending a label, and upercasing the names.
+Flatten a map to a dictionary, prepending a prefix label, and upercasing the names.
 
 Map:
 
-  config:
-    max: "42"
-    database:
-      name: "server.name.com"
-      port: "2056"
+  max: "42"
+  database:
+    name: "server.name.com"
+    port: "2056"
 
 Dictionary:
 
-  - name: "CONFIG_MAX"
+  - name: "PREFIX_MAX"
     value: "42"
-  - name: "CONFIG_DATABASE_NAME"
+  - name: "PREFIX_DATABASE_NAME"
     value: "server.name.com"
-  - name: "CONFIG_DATABASE_PORT"
+  - name: "PREFIX_DATABASE_PORT"
     value: "2056"
 
 */}}
