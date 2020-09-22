@@ -13,6 +13,7 @@ This is just experiments with:
 ```bash
 # Build the docker image
 ./bin/docker-build-push.sh -n NAME -v VERSION
+# Update Chart.yaml appVersion to the VERSION above
 # helm deploy 
 ./bin/deploy.sh
 ```
@@ -26,7 +27,7 @@ config:
     max: "42"
     database:
       name: "server.name.com"
-      port: 2056
+      port: "2056"
 ``` 
 
 The environment variables that result will be:
@@ -36,7 +37,6 @@ CONFIG_MAX=42
 CONFIG_DATABASE_NAME=server.name.com
 CONFIG_DATABASE_PORT=2056
 ```
-
 
 ## Helm 2.9.0 vs Helm 3.+
  
