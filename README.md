@@ -7,10 +7,14 @@ This is just experiments with:
  - Helm (v2.9.0+, v3.+)
     - environment yaml files to env variables 
     - environment global with local overrides
+ - Istio (v1.7.2)
+ 
+The goal was to exclude Istio proxying one site and not others. 
  
 ## Basic Steps
  
 ```bash
+# ./bin/istio-install.sh
 # Build the docker image
 ./bin/docker-build-push.sh -n NAME -v VERSION
 # Update Chart.yaml appVersion to the VERSION above
