@@ -9,7 +9,20 @@ This is just experiments with:
     - environment global with local overrides
  - Istio (v1.7.2)
  
-The goal was to exclude Istio proxying one site and not others. 
+The goal was to exclude Istio proxying for one site and not others:
+
+```
+webgo 2020/09/23 05:15:11 TICK
+webgo 2020/09/23 05:15:12 Response status http://gobyexample.com : 200 OK
+webgo 2020/09/23 05:15:12 Response status http://google.com : 200 OK
+istio-proxy [2020-09-23T05:15:11.920Z "GET / HTTP/1.1" 301 - "-" "-" 0 183 38 35 "-" "Go-http-client/1.1" "6713627c-1965-96ed-983d-4576677b848c" "gobyexample.com" "143.204.151.4:80" PassthroughCluster 10.1.0.116:55436 143.204.151.4:80 10.1.0.116:47062 - allow_any
+istio-proxy [2020-09-23T05:15:11.966Z "- - -" 0 - "-" "-" 524 12066 59 - "-" "-" "-" "-" "143.204.151.4:443" PassthroughCluster 10.1.0.116:50402 143.204.151.4:443 10.1.0.116:50400 - -
+webgo 2020/09/23 05:15:22 TICK
+webgo 2020/09/23 05:15:22 Response status http://gobyexample.com : 200 OK
+webgo 2020/09/23 05:15:22 Response status http://google.com : 200 OK
+```
+ 
+ Note from the log above, istio-proxy is invoked for gobyexample.com, but not google.com.
  
 ## Basic Steps
  
