@@ -8,20 +8,41 @@ import (
 	"time"
 )
 
+const (
+	target = "http://gobyexample.com"
+	delay = 10 * time.Second
+)
+
 var msg string
 
-func main() {
+func init() {
 	msg = os.Getenv("CONFIG_MESSAGE")
-	go func() {
-		for {
-			time.Sleep(5 * time.Second)
-			log.Println(msg)
-		}
-	}()
+	if msg == "" {
+		msg = "UNSET"
+	}
+}
+
+func main() {
+
+	go pinger()
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8888", nil))
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, msg)
+}
+
+func pinger() {
+	for {
+		log.Println(msg)
+		resp, err := http.Get(target)
+		if err != nil {
+			log.Println("Failed to get", target, ":", err)
+		} else {
+			log.Println("Response status", target, ":", resp.Status)
+			resp.Body.Close()
+		}
+		time.Sleep(delay)
+	}
 }
