@@ -3,3 +3,4 @@ helm 3.3.3
 kubectx 0.9.1
 kubectl 1.19.2
 k9s 0.21.2
+istioctl 1.7.2
