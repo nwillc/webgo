@@ -3,16 +3,16 @@ set -e
 set -u
 set -o pipefail
 
-NAME="nwillc/webgo"
+REPOSITORY="nwillc/webgo"
 VERSION=""
 
-while getopts ":n:v:" OPT; do
+while getopts ":r:v:" OPT; do
   case "${OPT}" in
-    n)
-      NAME=${OPTARG}
+    r)
+      REPOSITORY=${OPTARG}
       ;;
     v)
-      VERSION=:${OPTARG}
+      VERSION=${OPTARG}
       ;;
     :)
       echo "Error: -${OPTARG} requires an argument."
@@ -25,8 +25,8 @@ while getopts ":n:v:" OPT; do
   esac
 done
 
-echo Building "${NAME}${VERSION}"
+echo Building "${REPOSITORY}:${VERSION}"
 ./bin/make-alpine.sh
-docker build -t ${NAME}${VERSION} -f docker/webgo/Dockerfile .
-docker push ${NAME}${VERSION}
+docker build -t "${REPOSITORY}:${VERSION}" -f docker/webgo/Dockerfile .
+docker push "${REPOSITORY}:${VERSION}"
 
