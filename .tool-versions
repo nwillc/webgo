@@ -2,5 +2,5 @@ golang 1.15.1
 helm 3.3.4
 kubectx 0.9.1
 kubectl 1.19.2
-k9s 0.22.2
+k9s 0.22.1
 istioctl 1.7.2
