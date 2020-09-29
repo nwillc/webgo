@@ -15,8 +15,9 @@ spec:
       {{- include "webgo.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
@@ -38,6 +39,14 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env: {{ list .Values.config "CONFIG" | include "flattenMap" | nindent 12 }}
+            - name: "SECRET_USERNAME"
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: test-secret
+          volumeMounts:
+            - mountPath: "/license"
+              name: "license-config"
           ports:
             - name: http
               containerPort: 8888
@@ -64,3 +73,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: license-config
+          configMap:
+            name: license-config

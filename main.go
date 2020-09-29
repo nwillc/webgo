@@ -24,7 +24,7 @@ func init() {
 }
 
 func main() {
-
+	log.Println("Username:", os.Getenv("SECRET_USERNAME"))
 	go pinger()
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8888", nil))

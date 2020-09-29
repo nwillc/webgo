@@ -50,6 +50,3 @@ tolerations: []
 
 affinity: {}
 
-config:
-  foo: bar
-  favorite: chocolate
