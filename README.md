@@ -29,10 +29,10 @@ webgo 2020/09/23 05:15:22 Response status http://google.com : 200 OK
 ```bash
 # ./bin/istio-install.sh
 # Build the docker image
-./bin/docker-build-push.sh -n NAME -v VERSION
+./bin/docker-build-push.sh -r NAME -v VERSION
 # Update Chart.yaml appVersion to the VERSION above
 # helm deploy 
-./bin/deploy.sh
+./bin/deploy.sh -r NAME -v VERSION
 ```
 
 ## Config Notes
