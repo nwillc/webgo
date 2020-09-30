@@ -8,11 +8,15 @@ ENV=local
 REPOSITORY="nwillc/webgo"
 VERSION="1.0.0"
 BUILD="false"
+CONTEXT=docker-desktop
 
-while getopts ":bdr:v:" OPT; do
+while getopts ":bcdr:v:" OPT; do
   case "${OPT}" in
     b)
       BUILD="true"
+      ;;
+    c)
+      CONTEXT=${OPTARG}
       ;;
     d)
       DEBUG="--dry-run --debug"
@@ -33,6 +37,8 @@ done
 if [ ".${BUILD}" == ".true" ]; then
   ./bin/docker-build-push.sh -r "${REPOSITORY}" -v "${VERSION}"
 fi
+
+kubectx "${CONTEXT}"
 
 helm upgrade --install \
   --values environment/global/config.yaml --values "environment/${ENV}/config.yaml" \
