@@ -3,7 +3,7 @@
 echo Only needed by > 3.x Istio...
 isioctl version
 
-read -rp "Continue (N/y)" CONTINUE
+read -rp "Required only of 2.x helm - Continue (N/y)" CONTINUE
 if [ "${CONTINUE}" != "y" ]; then
   exit 0
 fi
