@@ -18,7 +18,10 @@ serviceAccount:
   annotations: {}
   name: ""
 
-podAnnotations: {}
+podAnnotations:
+  vault.hashicorp.com/agent-inject: "true"
+  vault.hashicorp.com/role: "webgo"
+  vault.hashicorp.com/agent-inject-secret-database-config.txt: "webgo/data/database/config"
 
 podSecurityContext: {}
 
