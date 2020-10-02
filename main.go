@@ -10,12 +10,18 @@ import (
 	"time"
 )
 
+const (
+	configMsg          = "CONFIG_MESSAGE" // See environments/local/config.yaml
+	vaultSecretsFolder = "/vault/secrets"
+	databaseSecret     = "/vault/secrets/database-config.json" // See chart's podAnnotations in values.yaml
+)
+
 var msg string
 
 func main() {
-	msg = os.Getenv("CONFIG_MESSAGE")
-	walk("/vault/secrets")
-	dumpFile("/vault/secrets/database-config.txt")
+	msg = os.Getenv(configMsg)
+	walk(vaultSecretsFolder)
+	dumpFile(databaseSecret)
 	go func() {
 		for {
 			time.Sleep(5 * time.Second)
@@ -52,5 +58,5 @@ func dumpFile(fileName string) {
 		return
 	}
 
-	log.Println(string(content))
+	log.Printf("%s: %s", fileName, string(content))
 }

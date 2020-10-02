@@ -21,7 +21,11 @@ serviceAccount:
 podAnnotations:
   vault.hashicorp.com/agent-inject: "true"
   vault.hashicorp.com/role: "webgo"
-  vault.hashicorp.com/agent-inject-secret-database-config.txt: "webgo/data/database/config"
+  vault.hashicorp.com/agent-inject-secret-database-config.json: "webgo/data/database/config"
+  vault.hashicorp.com/agent-inject-template-database-config.json: |
+    {{- with secret "webgo/data/database/config" -}}
+    { "username": "{{ .Data.data.username }}", "password": "{{ .Data.data.password }}" }
+    {{- end -}}
 
 podSecurityContext: {}
 
