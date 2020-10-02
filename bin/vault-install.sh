@@ -25,8 +25,8 @@ vault auth enable kubernetes
 
 # Configure the authentication to use the service account token, the location of the host, and its certificate.
 vault write auth/kubernetes/config \
-    token_reviewer_jwt=@/var/run/secrets/kubernetes.io/serviceaccount/token \
-    kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443" \
+    token_reviewer_jwt="\$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+    kubernetes_host="https://\$KUBERNETES_PORT_443_TCP_ADDR:443" \
     kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 
 # Write out policy that enables the read capability for secrets at path webgo/data/database/config.
