@@ -3,9 +3,11 @@ set -e
 set -u
 set -o pipefail
 
+APP=webgo
+CHART="./charts/${APP}"
 DEBUG=""
 ENV=local
-REPOSITORY="nwillc/webgo"
+REPOSITORY="nwillc/${APP}"
 VERSION="1.0.0"
 BUILD="false"
 CONTEXT=docker-desktop
@@ -40,7 +42,13 @@ fi
 
 kubectx "${CONTEXT}"
 
-helm upgrade --install \
-  --values environment/global/config.yaml --values "environment/${ENV}/config.yaml" \
-  --set image.repository="${REPOSITORY}" --set image.tag="${VERSION}" \
-  webgo ${DEBUG} ./charts/webgo
+HELM_ARGS="${HELM_ARGS} --values environment/global/config.yaml"
+HELM_ARGS="${HELM_ARGS} --values environment/${ENV}/config.yaml"
+HELM_ARGS="${HELM_ARGS} --set image.repository=${REPOSITORY}"
+HELM_ARGS="${HELM_ARGS} --set image.tag=${VERSION}"
+
+if [ ! -z "${DEBUG}" ]; then
+  helm lint ${CHART} ${HELM_ARGS}
+fi
+
+helm upgrade --install ${HELM_ARGS} ${APP} ${DEBUG} ${CHART}
