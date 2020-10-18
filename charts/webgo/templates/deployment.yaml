@@ -39,14 +39,6 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env: {{ list .Values.config "CONFIG" | include "flattenMap" | nindent 12 }}
-            - name: "SECRET_USERNAME"
-              valueFrom:
-                secretKeyRef:
-                  key: username
-                  name: test-secret
-          volumeMounts:
-            - mountPath: "/license"
-              name: "license-config"
           ports:
             - name: http
               containerPort: 8888
@@ -73,7 +65,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      volumes:
-        - name: license-config
-          configMap:
-            name: license-config
+
