@@ -13,3 +13,19 @@ spec:
     protocol: HTTP
   resolution: DNS
   location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: wikipedia
+spec:
+  hosts:
+    - wikipedia.com
+  exportTo:
+    - "."
+  ports:
+    - number: 80
+      name: http
+      protocol: HTTP
+  resolution: DNS
+  location: MESH_EXTERNAL
