@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nwillcpaxos/webgo
+  repository: nwillc/webgo
   pullPolicy: IfNotPresent
   tag: ""
 

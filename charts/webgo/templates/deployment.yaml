@@ -22,7 +22,7 @@ spec:
     {{- end }}
       labels:
         app: {{ .Chart.Name }}
-        version: {{ .Chart.AppVersion }}
+        version: {{ .Values.image.tag | default .Chart.AppVersion }}
         {{- include "webgo.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
