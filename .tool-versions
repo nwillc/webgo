@@ -1,6 +1,7 @@
-golang 1.15.1
+golang 1.15.3
 helm 3.3.4
 kubectx 0.9.1
 kubectl 1.19.2
 k9s 0.22.1
-istioctl 1.7.2
+istioctl 1.6.11
+helmfile 0.134.0

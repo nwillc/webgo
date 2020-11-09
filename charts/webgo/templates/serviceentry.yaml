@@ -4,12 +4,12 @@ metadata:
   name: gobyexample
 spec:
   hosts:
-    - gobyexample.com
+  - gobyexample.com
   exportTo:
-    - "."
+  - "."
   ports:
-    - number: 80
-      name: http
-      protocol: HTTP
+  - number: 80
+    name: http
+    protocol: HTTP
   resolution: DNS
   location: MESH_EXTERNAL

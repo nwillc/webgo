@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"path/filepath"
 	"time"
 )
 
@@ -27,8 +25,6 @@ func init() {
 }
 
 func main() {
-	log.Println("Username:", os.Getenv("SECRET_USERNAME"))
-	licenseCheck(licenseFolder)
 	go pinger()
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8888", nil))
@@ -59,24 +55,3 @@ func pinger() {
 	}
 }
 
-func licenseCheck(licenseFolder string) {
-	var files []string
-	err := filepath.Walk(licenseFolder, func(path string, info os.FileInfo, err error) error {
-		files = append(files, path)
-		return nil
-	})
-	if err != nil {
-		log.Println("Error walking", licenseFolder, err)
-		return
-	}
-	log.Println("Found")
-	for _, file := range files {
-		log.Println(file)
-	}
-	contents, err := ioutil.ReadFile(licenseFolder + "/license")
-	if err != nil {
-		log.Println("Could not open", licenseFolder, "/license")
-		return
-	}
-	log.Println("License:", string(contents))
-}

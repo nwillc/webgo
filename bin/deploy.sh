@@ -20,7 +20,7 @@ while getopts ":dr:v:" OPT; do
       VERSION=${OPTARG}
       ;;
     *)
-      echo "script usage: $(basename $0) [-n somevalue]" >&2
+      echo "script usage: $(basename $0) [-b] [-d] [-r repository] [-v version]" >&2
       exit 1
       ;;
   esac
