@@ -19,8 +19,11 @@ while getopts ":r:v:" OPT; do
       exit 1
       ;;
     *)
-      echo "script usage: $(basename $0) [-n somevalue]" >&2
-      exit 1
+      cat <<! >&2
+script usage: $(basename $0) [-r repository] [-v version]
+  -r repository   The image repository to deploy image to.
+  -v version      The version number of the image.
+!
       ;;
   esac
 done

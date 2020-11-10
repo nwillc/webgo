@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
   name: gobyexample
@@ -14,13 +14,29 @@ spec:
   resolution: DNS
   location: MESH_EXTERNAL
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
   name: wikipedia
 spec:
   hosts:
-    - wikipedia.com
+    - www.wikipedia.org
+  exportTo:
+    - "."
+  ports:
+    - number: 80
+      name: http
+      protocol: HTTP
+  resolution: DNS
+  location: MESH_EXTERNAL
+---
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: google
+spec:
+  hosts:
+    - www.google.com
   exportTo:
     - "."
   ports:

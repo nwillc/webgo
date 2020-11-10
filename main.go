@@ -12,7 +12,7 @@ const (
 	delay         = 10 * time.Second
 )
 
-var targets = []string {"http://gobyexample.com", "http://google.com", "http://wikipedia.com"}
+var targets = []string {"http://gobyexample.com", "http://www.google.com", "http://www.wikipedia.org"}
 var msg string
 
 func init() {
