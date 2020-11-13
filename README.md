@@ -1,24 +1,34 @@
 # WEBGO
 
-This is just experiments with:
+This is just experiments with kubernetes.
 
- - asdf for tool versioning
- - Go (v1.15.3)
+# Requirements
+
+## Overall
+
  - Kubernetes (OSX Docker Desktop)
- - Helm (v3.3.4)
-    - environment yaml files to env variables 
-    - environment global with local overrides
- - Helmfile (v0.134.0)
- - Istio (v1.7.4)
+ - asdf for tool versioning
  
-## Goals
+## For Kubernetes
 
- - Configure app in cluster via `helm`
- - Use `helmfile` to deploy app
- - Use `Istio` and `Kiali` for observability
+ - Via `asdf`
+    - Helm (v3.3.4)
+    - Helmfile (v0.134.0)
+    - Istio (v1.7.4)
  
-## Requirements
+## For The Webgo App
 
- - Have [asdf](https://github.com/asdf-vm/asdf) installed
-   - Review the `.tool-versions` file and add needed plugins and installs
- - Have Docker Desktop with it's kubernetes cluster running
+ - Via `asdf`
+   - Go (v1.15.3) 
+
+ 
+# To Get Kubernetes Set Up
+
+ 1. Enable kubernetes in Docker Desktop
+ 2. Run `./bin/istio-install.sh`
+ 
+ 
+# To Run WebGo
+
+ 1. Have a docker hub repo set up
+ 2. `./bin/deploy.sh -b -r DOCKER_REPO_NAME -v A VERSION`
