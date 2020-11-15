@@ -3,7 +3,7 @@ set -e
 set -u
 set -o pipefail
 
-COMMAND="sync"
+COMMAND="upgrade --install"
 REPOSITORY="nwillc/webgo"
 VERSION=""
 BUILD="false"
@@ -56,6 +56,6 @@ fi
 
 kubectx "${CONTEXT}"
 
-echo helmfile -e ${ENVIRONMENT} -f charts/helmfile.yaml ${COMMAND} --set image.repository="${REPOSITORY}" --set image.tag="${VERSION}"
-helmfile -e ${ENVIRONMENT} -f charts/helmfile.yaml ${COMMAND} --set image.repository="${REPOSITORY}" --set image.tag="${VERSION}"
-
+CMD="helm ${COMMAND} --values environment/global/config.yaml --values environment/${ENVIRONMENT}/config.yaml --set image.repository=${REPOSITORY} --set image.tag=${VERSION} --set-string timestamp=$(date +%s) webgo ./charts/webgo"
+echo ${CMD}
+${CMD}
