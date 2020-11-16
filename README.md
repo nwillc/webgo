@@ -9,18 +9,9 @@ This is just experiments with kubernetes.
  - Kubernetes (OSX Docker Desktop)
  - asdf for tool versioning
  
-## For Kubernetes
+## Getting Tools
 
- - Via `asdf`
-    - Helm (v3.3.4)
-    - Helmfile (v0.134.0)
-    - Istio (v1.7.4)
- 
-## For The Webgo App
-
- - Via `asdf`
-   - Go (v1.15.3) 
-
+Have `asdf` set up and then run `./bin/asdf-sync.sh` to have it sync to `.tool-versions` expectations.
  
 # To Get Kubernetes Set Up
 
