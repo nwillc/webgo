@@ -1,3 +1,6 @@
+helmDefaults:
+  recreatePods: true
+
 releases:
     - name: webgo
       chart: ./webgo
