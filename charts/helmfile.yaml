@@ -1,9 +1,10 @@
 releases:
     - name: webgo
       chart: ./webgo
+      values:
+      - ../environment/global/webgo.yaml
 
 environments:
   local:
     values:
-      - ../environment/global/webgo.yaml
-      - ../environment/{{ .Environment.Name }}/webgo.yaml
+      - ../environment/local/webgo.yaml
