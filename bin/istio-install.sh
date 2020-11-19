@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo Installing istio 1.8, prometheus, kiali, grafana.
+echo Configuring default namespace to inject istio sidecars.
 
 if [  ! -d istio ]; then
     mkdir istio
@@ -17,3 +18,6 @@ helm install --namespace istio-system istiod manifests/charts/istio-control/isti
 kubectl apply -f samples/addons/prometheus.yaml
 kubectl apply -f samples/addons/kiali.yaml
 kubectl apply -f samples/addons/grafana.yaml
+
+kubectl label namespace default istio-injection=enabled
+
