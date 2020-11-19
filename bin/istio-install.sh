@@ -1,8 +1,19 @@
 #!/bin/bash
 
-echo Installing istio 1.7.4 demo profile, prometheus and kiali.
-istioctl install --set profile=demo
-kubectl label namespace default istio-injection=enable
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/prometheus.yaml
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/kiali.yaml
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.7/samples/addons/grafana.yaml
+echo Installing istio 1.8, prometheus, kiali, grafana.
+
+if [  ! -d istio ]; then
+    mkdir istio
+    cd istio
+    curl -L https://istio.io/downloadIstio | sh -
+fi
+
+cd istio/istio-1.8.0
+
+kubectl create namespace istio-system
+helm install --namespace istio-system istio-base manifests/charts/base  --set global.jwtPolicy=first-party-jwt
+helm install --namespace istio-system istiod manifests/charts/istio-control/istio-discovery \
+    --set global.hub="docker.io/istio" --set global.tag="1.8.0" --set global.jwtPolicy=first-party-jwt
+kubectl apply -f samples/addons/prometheus.yaml
+kubectl apply -f samples/addons/kiali.yaml
+kubectl apply -f samples/addons/grafana.yaml
