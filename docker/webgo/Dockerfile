@@ -1,4 +1,9 @@
-FROM alpine:3.12.0
-RUN apk add --update ca-certificates # Certificates for SSL
-ADD ./bin/amd64/webgo /go/bin/webgo
-ENTRYPOINT /go/bin/webgo
+FROM golang:1.7.3 AS builder
+ADD . /src
+RUN cd /src && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o webgo
+
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /src/webgo .
+CMD ["./webgo"]

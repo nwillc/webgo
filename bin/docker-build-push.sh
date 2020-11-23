@@ -29,7 +29,6 @@ script usage: $(basename $0) [-r repository] [-v version]
 done
 
 echo Building "${REPOSITORY}:${VERSION}"
-./bin/make-alpine.sh
 docker build -t "${REPOSITORY}:${VERSION}" -f docker/webgo/Dockerfile .
 docker push "${REPOSITORY}:${VERSION}"
 

@@ -10,7 +10,7 @@ BUILD="false"
 CONTEXT=docker-desktop
 ENVIRONMENT=local
 
-while getopts ":bcde:r:v:" OPT; do
+while getopts ":bc:de:r:v:" OPT; do
   case "${OPT}" in
     b)
       BUILD="true"

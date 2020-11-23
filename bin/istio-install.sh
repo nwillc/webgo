@@ -5,11 +5,10 @@ echo Configuring default namespace to inject istio sidecars.
 
 if [  ! -d istio ]; then
     mkdir istio
-    cd istio || exit 1
-    curl -L https://istio.io/downloadIstio | sh -
+    (cd istio && curl -L https://istio.io/downloadIstio | sh - )
 fi
 
-cd istio-1.8.0 || exit 1
+cd istio/istio-1.8.0 || exit 1
 
 kubectl create namespace istio-system
 helm install --namespace istio-system istio-base manifests/charts/base  --set global.jwtPolicy=first-party-jwt
