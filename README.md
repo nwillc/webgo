@@ -1,6 +1,6 @@
 # WEBGO
 
-This is just experiments with kubernetes, helm and Istio.
+This is repo contains experiments with Kubernetes, Helm and Istio.
 
 # Requirements
 
@@ -20,7 +20,7 @@ Have `asdf` set up and then run `./bin/asdf-sync.sh` to have it sync to `.tool-v
  
 # To Run WebGo
 
- 1. Have a docker hub repo set up
+ 1. Have a docker hub repo set up and be logged in
  2. `./bin/deploy.sh -b -r DOCKER_REPO_NAME -v A VERSION`
  
 # K8s 
@@ -28,7 +28,7 @@ I've run this with both the Docker Desktop Kubernetes and Minikube:
 
   - For Docker Desktop set 4 cpus an 8g memory.
   - For Minikube `minikube start --cpus=4 --memory=16g`
-    - To get 16g, docker with need 16.5g
+    - To get 16g, docker will need 16.5g
     
 # Sidecar Injection
 Istio provides various controls for this, but with the Docker Desktop and Minikube clusters I could only get automatic 
