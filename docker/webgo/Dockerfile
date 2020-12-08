@@ -1,9 +1,11 @@
 FROM golang:1.7.3 AS builder
-ADD . /src
-RUN cd /src && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o webgo
+WORKDIR /build
+COPY main.go .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    go build -o webgo \
+    -ldflags="-w" main.go
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /src/webgo .
-CMD ["./webgo"]
+COPY --from=builder /build/webgo webgo
+CMD ["/webgo"]
