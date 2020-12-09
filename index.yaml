@@ -1,0 +1,10 @@
+apiVersion: v1
+entries:
+  webgo:
+  - created: 2020-12-09T15:05:51.078570269-07:00
+    description: Deploy webgo pod
+    name: webgo
+    urls:
+    - webgo-1.0.10.tgz
+    version: 1.0.10
+    
