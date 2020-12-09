@@ -1,10 +1,15 @@
 apiVersion: v1
 entries:
   webgo:
-  - created: 2020-12-09T15:05:51.078570269-07:00
-    description: Deploy webgo pod
+  - apiVersion: v2
+    appVersion: 1.0.6
+    created: "2020-12-09T14:39:54.778533-05:00"
+    description: A Helm chart for an example Go program
+    digest: 6ec6967c0b726e0a5c10292444229e8d6cf3e5497b40926c7e92a75e43a4d977
+    icon: https://raw.githubusercontent.com/nwillc/ksvg/master/docs/images/codeMonkey.svg
     name: webgo
+    type: application
     urls:
-    - webgo-1.0.10.tgz
+    - https://nwillc.github.io/webgo/webgo-1.0.10.tgz
     version: 1.0.10
-    
+generated: "2020-12-09T14:39:54.777309-05:00"
