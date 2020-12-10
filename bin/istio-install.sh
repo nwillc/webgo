@@ -19,4 +19,3 @@ kubectl apply -f samples/addons/kiali.yaml
 kubectl apply -f samples/addons/grafana.yaml
 
 kubectl label namespace default istio-injection=enabled
-
