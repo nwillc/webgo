@@ -30,6 +30,15 @@ I've run this with both the Docker Desktop Kubernetes and Minikube:
   - For Minikube `minikube start --cpus=4 --memory=16g`
     - To get 16g, docker will need 16.5g
     
+# Helm Chart Repo
+I've made the gh-pages branch into a Helm Chart Repo. This can be added:
+
+```bash
+$ helm repo add webgorepo https://nwillc.github.io/webgo/
+```
+
+And the chart there can then be used via `-C webgorepo/webgo` flag on the `deploy.sh` script.
+
 # Sidecar Injection
 Istio provides various controls for this, but with the Docker Desktop and Minikube clusters I could only get automatic 
 injection to work.

@@ -9,14 +9,18 @@ VERSION=""
 BUILD="false"
 CONTEXT=docker-desktop
 ENVIRONMENT=local
+CHART="./charts/webgo"
 
-while getopts ":bc:de:r:v:" OPT; do
+while getopts ":bc:de:r:v:C:" OPT; do
   case "${OPT}" in
     b)
       BUILD="true"
       ;;
     c)
       CONTEXT=${OPTARG}
+      ;;
+    C)
+      CHART="${OPTARG}"
       ;;
     d)
       COMMAND="template"
@@ -35,6 +39,7 @@ while getopts ":bc:de:r:v:" OPT; do
 script usage: $(basename $0) [-b] [-c context] [-d] [-r repository] [-v version]
   -b              Build executable.
   -c context      K8s context.
+  -C chart        Optionally designate the chart. Defaults to the local charts/webgo.
   -d              Debug the helm configuration w/o deploying.
   -e environment  Environment configure charts for.
   -r repository   The image repository to deploy image to.
