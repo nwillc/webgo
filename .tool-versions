@@ -2,3 +2,4 @@ helm 3.3.4
 istioctl 1.7.4
 kubectl 1.19.2
 kubectx 0.9.1
+minikube 1.15.1
