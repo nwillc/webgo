@@ -9,10 +9,11 @@ COMMAND="upgrade --install"
 CONTEXT=docker-desktop
 DIFF=""
 ENVIRONMENT=local
+NAME=webgo
 REPOSITORY="nwillc/webgo"
 VERSION=""
 
-while getopts ":bc:dDe:r:v:C:" OPT; do
+while getopts ":bc:dDle:r:v:C:" OPT; do
   case "${OPT}" in
     b)
       BUILD="true"
@@ -24,7 +25,7 @@ while getopts ":bc:dDe:r:v:C:" OPT; do
       CHART="${OPTARG}"
       ;;
     d)
-      COMMAND="template"
+      COMMAND="template --debug"
       ;;
     D)
       DIFF=true
@@ -32,6 +33,11 @@ while getopts ":bc:dDe:r:v:C:" OPT; do
       ;;
     e)
       ENVIRONMENT=${OPTARG}
+      ;;
+    l)
+      COMMAND="lint ${CHART}"
+      NAME=""
+      CHART=""
       ;;
     r)
       REPOSITORY=${OPTARG}
@@ -48,6 +54,7 @@ script usage: $(basename $0) [-b] [-c context] [-d] [-r repository] [-v version]
   -d              Debug the helm configuration w/o deploying.
   -D              Diff the helm chart.
   -e environment  Environment configure charts for.
+  -l              Lint the chart.
   -r repository   The image repository to deploy image to.
   -v version      The version number of the image.
 !
@@ -73,6 +80,6 @@ fi
 
 kubectx "${CONTEXT}"
 
-CMD="helm ${COMMAND} --values environment/global/config.yaml --values environment/${ENVIRONMENT}/config.yaml --set image.repository=${REPOSITORY} --set image.tag=${VERSION} --set-string timestamp=$(date +%s) webgo ./charts/webgo"
+CMD="helm ${COMMAND} --values environment/global/config.yaml --values environment/${ENVIRONMENT}/config.yaml --set image.repository=${REPOSITORY} --set image.tag=${VERSION} --set-string timestamp=$(date +%s) ${NAME} ${CHART}"
 echo ${CMD}
 ${CMD}
