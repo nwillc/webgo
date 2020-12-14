@@ -28,8 +28,8 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8888", nil))
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, msg)
+func handler(w http.ResponseWriter, _ *http.Request) {
+	_, _ = fmt.Fprintln(w, msg)
 }
 
 func pinger() {
@@ -41,7 +41,7 @@ func pinger() {
 				log.Println("Failed to get", target, ":", err)
 			} else {
 				log.Println("Response status", target, ":", resp.Status)
-				resp.Body.Close()
+				_ = resp.Body.Close()
 			}
 		}
 		time.Sleep(delay)
