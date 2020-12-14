@@ -3,15 +3,16 @@ set -e
 set -u
 set -o pipefail
 
+BUILD="false"
+CHART="./charts/webgo"
 COMMAND="upgrade --install"
+CONTEXT=docker-desktop
+DIFF=""
+ENVIRONMENT=local
 REPOSITORY="nwillc/webgo"
 VERSION=""
-BUILD="false"
-CONTEXT=docker-desktop
-ENVIRONMENT=local
-CHART="./charts/webgo"
 
-while getopts ":bc:de:r:v:C:" OPT; do
+while getopts ":bc:dDe:r:v:C:" OPT; do
   case "${OPT}" in
     b)
       BUILD="true"
@@ -24,6 +25,10 @@ while getopts ":bc:de:r:v:C:" OPT; do
       ;;
     d)
       COMMAND="template"
+      ;;
+    D)
+      DIFF=true
+      COMMAND="diff upgrade"
       ;;
     e)
       ENVIRONMENT=${OPTARG}
@@ -41,6 +46,7 @@ script usage: $(basename $0) [-b] [-c context] [-d] [-r repository] [-v version]
   -c context      K8s context.
   -C chart        Optionally designate the chart. Defaults to the local charts/webgo.
   -d              Debug the helm configuration w/o deploying.
+  -D              Diff the helm chart.
   -e environment  Environment configure charts for.
   -r repository   The image repository to deploy image to.
   -v version      The version number of the image.
@@ -53,6 +59,12 @@ done
 if [ -z "${VERSION}" ]; then
   echo Version required.
   exit 1
+fi
+
+if [ -n "${DIFF}" ]; then
+  if [ -z "$(helm plugin list | grep diff)" ]; then
+    helm plugin install https://github.com/databus23/helm-diff
+  fi
 fi
 
 if [ ".${BUILD}" == ".true" ]; then
