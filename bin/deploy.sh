@@ -35,9 +35,8 @@ while getopts ":bc:dDle:r:v:C:" OPT; do
       ENVIRONMENT=${OPTARG}
       ;;
     l)
-      COMMAND="lint ${CHART}"
+      COMMAND="lint"
       NAME=""
-      CHART=""
       ;;
     r)
       REPOSITORY=${OPTARG}
